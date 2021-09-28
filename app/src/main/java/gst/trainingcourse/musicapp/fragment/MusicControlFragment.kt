@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import gst.trainingcourse.musicapp.MyCommon
 import gst.trainingcourse.musicapp.R
+import gst.trainingcourse.musicapp.databinding.FragmentMusicControlBinding
 import gst.trainingcourse.musicapp.model.Music
 import gst.trainingcourse.musicapp.service.MusicService
 import kotlinx.android.synthetic.main.fragment_music_control.*
@@ -28,6 +29,7 @@ class MusicControlFragment : Fragment(), View.OnClickListener {
     private lateinit var actionReceiver : BroadcastReceiver
     private lateinit var  timeReceiver: BroadcastReceiver
     lateinit var v: View
+    private lateinit var binding: FragmentMusicControlBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +42,7 @@ class MusicControlFragment : Fragment(), View.OnClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        binding = FragmentMusicControlBinding.inflate(inflater, container, false)
         broadcastReceiver()
 
         sbTime.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
@@ -60,11 +63,11 @@ class MusicControlFragment : Fragment(), View.OnClickListener {
             }
 
         })
-        imgPlayMusic?.setOnClickListener(this)
-        imgForward?.setOnClickListener(this)
-        imgRewind?.setOnClickListener(this)
+        binding.imgPlayMusic.setOnClickListener(this)
+        binding.imgForward.setOnClickListener(this)
+        binding.imgRewind.setOnClickListener(this)
 
-        return v
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

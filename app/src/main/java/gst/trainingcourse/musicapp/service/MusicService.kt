@@ -8,7 +8,9 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.IBinder
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import gst.trainingcourse.musicapp.MainActivity
 import gst.trainingcourse.musicapp.MyCommon
+import gst.trainingcourse.musicapp.data.SQLiteHelper
 import gst.trainingcourse.musicapp.model.Music
 
 class MusicService : Service() {
@@ -25,6 +27,7 @@ class MusicService : Service() {
         val bundle = intent?.extras
         val action = bundle?.get("action") as String?
         val time = bundle?.get("time")
+
 
         if(action == MyCommon.MUSIC_START){
             position = bundle?.get("position") as Int

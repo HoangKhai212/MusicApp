@@ -8,6 +8,5 @@ object MyCommon {
     const val MUSIC_PAUSE = "pause"
     const val MUSIC_NEXT = "next"
     const val MUSIC_PREVIOUS = "previous"
-    val listMusic: MutableList<Music> = mutableListOf()
-
+    var listMusic: MutableList<Music> = mutableListOf()
 }

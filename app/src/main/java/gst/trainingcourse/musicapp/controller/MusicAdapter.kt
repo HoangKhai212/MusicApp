@@ -7,24 +7,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import gst.trainingcourse.musicapp.R
+import gst.trainingcourse.musicapp.databinding.MusicItemBinding
 import gst.trainingcourse.musicapp.fragment.MusicListFragment
 import gst.trainingcourse.musicapp.model.Music
 
 class MusicAdapter(private val listMusic: MutableList<Music>,  private val itemClickListener: OnItemClickListener):RecyclerView.Adapter<MusicAdapter.MusicViewHolder>() {
-    inner class MusicViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
-        var tvName = itemView.findViewById(R.id.tvName) as TextView
-        var tvSinger = itemView.findViewById(R.id.tvSinger) as TextView
-        var imgMusic = itemView.findViewById(R.id.imgMusic) as ImageView
-        var tvAlbum = itemView.findViewById(R.id.tvAlbum) as TextView
+    private lateinit var binding: MusicItemBinding
 
-        init {
-            itemView.setOnClickListener(this)
-        }
+    inner class MusicViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        override fun onClick(v: View?) {
-            val position = adapterPosition
-            itemClickListener.onItemClickListener(position)
-        }
     }
 
     interface OnItemClickListener {
@@ -39,10 +30,13 @@ class MusicAdapter(private val listMusic: MutableList<Music>,  private val itemC
     override fun onBindViewHolder(holder: MusicViewHolder, position: Int) {
         val music = listMusic[position]
         holder.apply {
-            tvName.text = music.name
-            tvSinger.text = music.singer
-            tvAlbum.text = music.album
-            imgMusic.setImageResource(music.image)
+            binding.tvName.text = music.name
+            binding.tvSinger.text = music.singer
+            binding.tvAlbum.text = music.album
+            binding.imgMusic.setImageResource(music.image)
+        }
+        holder.itemView.setOnClickListener(){
+            itemClickListener.onItemClickListener(position)
         }
     }
 
